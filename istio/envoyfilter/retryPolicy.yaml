@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: upstream
+  namespace: default
+spec:
+  workloadSelector:
+    labels:
+      service: client
+  configPatches:
+    - applyTo: HTTP_ROUTE
+      match:
+        context: SIDECAR_OUTBOUND
+        routeConfiguration:
+          vhost:
+            name: "upstream.default.svc.cluster.local:80"
+      patch:
+        operation: MERGE
+        value:
+          route:
+            retry_policy:
+              retry_back_off:
+                base_interval: "500ms"
+                max_interval: "1s"
