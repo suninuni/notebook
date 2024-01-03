@@ -1,0 +1,1015 @@
+{
+  "conjunctions": {
+      "AND": {
+          "label": "And",
+          "mongoConj": "$and",
+          "jsonLogicConj": "and",
+          "sqlConj": "AND",
+          "spelConj": "and",
+          "spelConjs": [
+              "and",
+              "&&"
+          ],
+          "reversedConj": "OR"
+      },
+      "OR": {
+          "label": "Or",
+          "mongoConj": "$or",
+          "jsonLogicConj": "or",
+          "sqlConj": "OR",
+          "spelConj": "or",
+          "spelConjs": [
+              "or",
+              "||"
+          ],
+          "reversedConj": "AND"
+      }
+  },
+  "operators": {
+      "equal": {
+          "label": "==",
+          "labelForFormat": "==",
+          "sqlOp": "=",
+          "spelOp": "==",
+          "spelOps": [
+              "==",
+              "eq"
+          ],
+          "reversedOp": "not_equal",
+          "jsonLogic": "==",
+          "elasticSearchQueryType": "term"
+      },
+      "not_equal": {
+          "isNotOp": true,
+          "label": "!=",
+          "labelForFormat": "!=",
+          "sqlOp": "<>",
+          "spelOp": "!=",
+          "spelOps": [
+              "!=",
+              "ne"
+          ],
+          "reversedOp": "equal",
+          "jsonLogic": "!="
+      },
+      "less": {
+          "label": "<",
+          "labelForFormat": "<",
+          "sqlOp": "<",
+          "spelOp": "<",
+          "spelOps": [
+              "<",
+              "lt"
+          ],
+          "reversedOp": "greater_or_equal",
+          "jsonLogic": "<",
+          "elasticSearchQueryType": "range"
+      },
+      "less_or_equal": {
+          "label": "<=",
+          "labelForFormat": "<=",
+          "sqlOp": "<=",
+          "spelOp": "<=",
+          "spelOps": [
+              "<=",
+              "le"
+          ],
+          "reversedOp": "greater",
+          "jsonLogic": "<=",
+          "elasticSearchQueryType": "range"
+      },
+      "greater": {
+          "label": ">",
+          "labelForFormat": ">",
+          "sqlOp": ">",
+          "spelOp": ">",
+          "spelOps": [
+              ">",
+              "gt"
+          ],
+          "reversedOp": "less_or_equal",
+          "jsonLogic": ">",
+          "elasticSearchQueryType": "range"
+      },
+      "greater_or_equal": {
+          "label": ">=",
+          "labelForFormat": ">=",
+          "sqlOp": ">=",
+          "spelOp": ">=",
+          "spelOps": [
+              ">=",
+              "ge"
+          ],
+          "reversedOp": "less",
+          "jsonLogic": ">=",
+          "elasticSearchQueryType": "range"
+      },
+      "like": {
+          "label": "Contains",
+          "labelForFormat": "Contains",
+          "reversedOp": "not_like",
+          "sqlOp": "LIKE",
+          "spelOp": "${0}.contains(${1})",
+          "valueTypes": [
+              "text"
+          ],
+          "jsonLogic": "in",
+          "_jsonLogicIsRevArgs": true,
+          "valueSources": [
+              "value"
+          ],
+          "elasticSearchQueryType": "regexp"
+      },
+      "not_like": {
+          "isNotOp": true,
+          "label": "Not contains",
+          "reversedOp": "like",
+          "labelForFormat": "Not Contains",
+          "sqlOp": "NOT LIKE",
+          "valueSources": [
+              "value"
+          ]
+      },
+      "starts_with": {
+          "label": "Starts with",
+          "labelForFormat": "Starts with",
+          "sqlOp": "LIKE",
+          "spelOp": "${0}.startsWith(${1})",
+          "valueSources": [
+              "value"
+          ]
+      },
+      "ends_with": {
+          "label": "Ends with",
+          "labelForFormat": "Ends with",
+          "sqlOp": "LIKE",
+          "spelOp": "${0}.endsWith(${1})",
+          "valueSources": [
+              "value"
+          ]
+      },
+      "between": {
+          "label": "Between",
+          "labelForFormat": "BETWEEN",
+          "sqlOp": "BETWEEN",
+          "cardinality": 2,
+          "valueLabels": [
+              "Value from",
+              "Value to"
+          ],
+          "textSeparators": [
+              null,
+              "and"
+          ],
+          "reversedOp": "not_between",
+          "jsonLogic": "<="
+      },
+      "not_between": {
+          "isNotOp": true,
+          "label": "Not between",
+          "labelForFormat": "NOT BETWEEN",
+          "sqlOp": "NOT BETWEEN",
+          "cardinality": 2,
+          "valueLabels": [
+              "Value from",
+              "Value to"
+          ],
+          "textSeparators": [
+              null,
+              "and"
+          ],
+          "reversedOp": "between"
+      },
+      "is_empty": {
+          "label": "Is empty",
+          "labelForFormat": "IS EMPTY",
+          "cardinality": 0,
+          "reversedOp": "is_not_empty",
+          "jsonLogic": "!"
+      },
+      "is_not_empty": {
+          "isNotOp": true,
+          "label": "Is not empty",
+          "labelForFormat": "IS NOT EMPTY",
+          "cardinality": 0,
+          "reversedOp": "is_empty",
+          "jsonLogic": "!!",
+          "elasticSearchQueryType": "exists"
+      },
+      "is_null": {
+          "label": "Is null",
+          "labelForFormat": "IS NULL",
+          "sqlOp": "IS NULL",
+          "cardinality": 0,
+          "reversedOp": "is_not_null",
+          "jsonLogic": "=="
+      },
+      "is_not_null": {
+          "label": "Is not null",
+          "labelForFormat": "IS NOT NULL",
+          "sqlOp": "IS NOT NULL",
+          "cardinality": 0,
+          "reversedOp": "is_null",
+          "jsonLogic": "!=",
+          "elasticSearchQueryType": "exists"
+      },
+      "select_equals": {
+          "label": "==",
+          "labelForFormat": "==",
+          "sqlOp": "=",
+          "spelOp": "==",
+          "spelOps": [
+              "==",
+              "eq"
+          ],
+          "reversedOp": "select_not_equals",
+          "jsonLogic": "==",
+          "elasticSearchQueryType": "term"
+      },
+      "select_not_equals": {
+          "isNotOp": true,
+          "label": "!=",
+          "labelForFormat": "!=",
+          "sqlOp": "<>",
+          "spelOp": "!=",
+          "spelOps": [
+              "!=",
+              "ne"
+          ],
+          "reversedOp": "select_equals",
+          "jsonLogic": "!="
+      },
+      "select_any_in": {
+          "label": "Any in",
+          "labelForFormat": "IN",
+          "sqlOp": "IN",
+          "valueTypes": [
+              "multiselect"
+          ],
+          "spelOp": "${1}.contains(${0})",
+          "reversedOp": "select_not_any_in",
+          "jsonLogic": "in",
+          "elasticSearchQueryType": "term"
+      },
+      "select_not_any_in": {
+          "isNotOp": true,
+          "label": "Not in",
+          "labelForFormat": "NOT IN",
+          "sqlOp": "NOT IN",
+          "reversedOp": "select_any_in"
+      },
+      "multiselect_contains": {
+          "label": "Contains",
+          "labelForFormat": "CONTAINS",
+          "reversedOp": "multiselect_not_contains",
+          "jsonLogic2": "some-in",
+          "spelOp": "T(CollectionUtils).containsAny(${0}, ${1})",
+          "elasticSearchQueryType": "term"
+      },
+      "multiselect_not_contains": {
+          "isNotOp": true,
+          "label": "Not contains",
+          "labelForFormat": "NOT CONTAINS",
+          "reversedOp": "multiselect_contains"
+      },
+      "multiselect_equals": {
+          "label": "Equals",
+          "labelForFormat": "==",
+          "sqlOp": "=",
+          "spelOp": "${0}.equals(${1})",
+          "reversedOp": "multiselect_not_equals",
+          "jsonLogic2": "all-in",
+          "elasticSearchQueryType": "term"
+      },
+      "multiselect_not_equals": {
+          "isNotOp": true,
+          "label": "Not equals",
+          "labelForFormat": "!=",
+          "sqlOp": "<>",
+          "reversedOp": "multiselect_equals"
+      },
+      "proximity": {
+          "label": "Proximity search",
+          "cardinality": 2,
+          "valueLabels": [
+              {
+                  "label": "Word 1",
+                  "placeholder": "Enter first word"
+              },
+              {
+                  "label": "Word 2",
+                  "placeholder": "Enter second word"
+              }
+          ],
+          "textSeparators": [],
+          "options": {
+              "optionLabel": "Near",
+              "optionTextBefore": "Near",
+              "optionPlaceholder": "Select words between",
+              "minProximity": 2,
+              "maxProximity": 10,
+              "defaults": {
+                  "proximity": 2
+              }
+          }
+      },
+      "some": {
+          "label": "Some",
+          "labelForFormat": "SOME",
+          "cardinality": 0,
+          "jsonLogic": "some"
+      },
+      "all": {
+          "label": "All",
+          "labelForFormat": "ALL",
+          "cardinality": 0,
+          "jsonLogic": "all"
+      },
+      "none": {
+          "label": "None",
+          "labelForFormat": "NONE",
+          "cardinality": 0,
+          "jsonLogic": "none"
+      }
+  },
+  "widgets": {
+      "text": {
+          "type": "text",
+          "jsType": "string",
+          "valueSrc": "value",
+          "valueLabel": "String",
+          "valuePlaceholder": "Enter string"
+      },
+      "textarea": {
+          "type": "text",
+          "jsType": "string",
+          "valueSrc": "value",
+          "valueLabel": "Text",
+          "valuePlaceholder": "Enter text",
+          "fullWidth": true
+      },
+      "number": {
+          "type": "number",
+          "jsType": "number",
+          "valueSrc": "value",
+          "valueLabel": "Number",
+          "valuePlaceholder": "Enter number",
+          "valueLabels": [
+              {
+                  "label": "Number from",
+                  "placeholder": "Enter number from"
+              },
+              {
+                  "label": "Number to",
+                  "placeholder": "Enter number to"
+              }
+          ]
+      },
+      "slider": {
+          "type": "number",
+          "jsType": "number",
+          "valueSrc": "value",
+          "valueLabel": "Number",
+          "valuePlaceholder": "Enter number or move slider"
+      },
+      "select": {
+          "type": "select",
+          "jsType": "string",
+          "valueSrc": "value",
+          "valueLabel": "Value",
+          "valuePlaceholder": "Select value"
+      },
+      "multiselect": {
+          "type": "multiselect",
+          "jsType": "array",
+          "valueSrc": "value",
+          "valueLabel": "Values",
+          "valuePlaceholder": "Select values"
+      },
+      "date": {
+          "type": "date",
+          "jsType": "string",
+          "valueSrc": "value",
+          "dateFormat": "DD.MM.YYYY",
+          "valueFormat": "YYYY-MM-DD",
+          "valueLabel": "Date",
+          "valuePlaceholder": "Enter date",
+          "valueLabels": [
+              {
+                  "label": "Date from",
+                  "placeholder": "Enter date from"
+              },
+              {
+                  "label": "Date to",
+                  "placeholder": "Enter date to"
+              }
+          ],
+          "spelImportFuncs": [
+              {
+                  "obj": {
+                      "cls": [
+                          "java",
+                          "time",
+                          "LocalDate"
+                      ]
+                  },
+                  "methodName": "parse",
+                  "args": [
+                      {
+                          "var": "v"
+                      },
+                      {
+                          "obj": {
+                              "cls": [
+                                  "java",
+                                  "time",
+                                  "format",
+                                  "DateTimeFormatter"
+                              ]
+                          },
+                          "methodName": "ofPattern",
+                          "args": [
+                              {
+                                  "var": "fmt"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
+      },
+      "time": {
+          "type": "time",
+          "jsType": "string",
+          "valueSrc": "value",
+          "timeFormat": "HH:mm",
+          "valueFormat": "HH:mm:ss",
+          "use12Hours": false,
+          "valueLabel": "Time",
+          "valuePlaceholder": "Enter time",
+          "valueLabels": [
+              {
+                  "label": "Time from",
+                  "placeholder": "Enter time from"
+              },
+              {
+                  "label": "Time to",
+                  "placeholder": "Enter time to"
+              }
+          ],
+          "spelImportFuncs": [
+              "T(java.time.LocalTime).parse(${v})"
+          ]
+      },
+      "datetime": {
+          "type": "datetime",
+          "jsType": "string",
+          "valueSrc": "value",
+          "timeFormat": "HH:mm",
+          "dateFormat": "DD.MM.YYYY",
+          "valueFormat": "YYYY-MM-DD HH:mm:ss",
+          "use12Hours": false,
+          "valueLabel": "Datetime",
+          "valuePlaceholder": "Enter datetime",
+          "valueLabels": [
+              {
+                  "label": "Datetime from",
+                  "placeholder": "Enter datetime from"
+              },
+              {
+                  "label": "Datetime to",
+                  "placeholder": "Enter datetime to"
+              }
+          ],
+          "spelImportFuncs": [
+              {
+                  "obj": {
+                      "cls": [
+                          "java",
+                          "time",
+                          "LocalDateTime"
+                      ]
+                  },
+                  "methodName": "parse",
+                  "args": [
+                      {
+                          "var": "v"
+                      },
+                      {
+                          "obj": {
+                              "cls": [
+                                  "java",
+                                  "time",
+                                  "format",
+                                  "DateTimeFormatter"
+                              ]
+                          },
+                          "methodName": "ofPattern",
+                          "args": [
+                              {
+                                  "var": "fmt"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
+      },
+      "boolean": {
+          "type": "boolean",
+          "jsType": "boolean",
+          "valueSrc": "value",
+          "labelYes": "Yes",
+          "labelNo": "No",
+          "defaultValue": false
+      },
+      "field": {
+          "valueSrc": "field",
+          "valueLabel": "Field to compare",
+          "valuePlaceholder": "Select field to compare",
+          "customProps": {
+              "showSearch": true
+          }
+      },
+      "func": {
+          "valueSrc": "func",
+          "valueLabel": "Function",
+          "valuePlaceholder": "Select function",
+          "customProps": {}
+      },
+      "case_value": {
+          "valueSrc": "value",
+          "type": "case_value"
+      },
+      "rangeslider": {
+          "type": "number",
+          "jsType": "number",
+          "valueSrc": "value",
+          "valueLabel": "Range",
+          "valuePlaceholder": "Select range",
+          "valueLabels": [
+              {
+                  "label": "Number from",
+                  "placeholder": "Enter number from"
+              },
+              {
+                  "label": "Number to",
+                  "placeholder": "Enter number to"
+              }
+          ],
+          "singleWidget": "slider"
+      },
+      "treeselect": {
+          "type": "treeselect",
+          "jsType": "string",
+          "valueSrc": "value",
+          "valueLabel": "Value",
+          "valuePlaceholder": "Select value"
+      },
+      "treemultiselect": {
+          "type": "treemultiselect",
+          "jsType": "array",
+          "valueSrc": "value",
+          "valueLabel": "Values",
+          "valuePlaceholder": "Select values"
+      }
+  },
+  "types": {
+      "text": {
+          "defaultOperator": "equal",
+          "mainWidget": "text",
+          "widgets": {
+              "text": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "like",
+                      "not_like",
+                      "starts_with",
+                      "ends_with",
+                      "proximity",
+                      "is_empty",
+                      "is_not_empty",
+                      "is_null",
+                      "is_not_null"
+                  ],
+                  "widgetProps": {},
+                  "opProps": {}
+              },
+              "textarea": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "like",
+                      "not_like",
+                      "starts_with",
+                      "ends_with",
+                      "is_empty",
+                      "is_not_empty",
+                      "is_null",
+                      "is_not_null"
+                  ],
+                  "widgetProps": {},
+                  "opProps": {}
+              },
+              "field": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "proximity"
+                  ]
+              }
+          }
+      },
+      "number": {
+          "defaultOperator": "equal",
+          "mainWidget": "number",
+          "widgets": {
+              "number": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "between",
+                      "not_between",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              },
+              "slider": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              },
+              "rangeslider": {
+                  "opProps": {
+                      "between": {
+                          "isSpecialRange": true
+                      },
+                      "not_between": {
+                          "isSpecialRange": true
+                      }
+                  },
+                  "operators": [
+                      "between",
+                      "not_between",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "date": {
+          "defaultOperator": "equal",
+          "widgets": {
+              "date": {
+                  "opProps": {
+                      "between": {
+                          "isSpecialRange": true,
+                          "textSeparators": [
+                              null,
+                              null
+                          ]
+                      },
+                      "not_between": {
+                          "isSpecialRange": true,
+                          "textSeparators": [
+                              null,
+                              null
+                          ]
+                      }
+                  },
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "between",
+                      "not_between",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "time": {
+          "defaultOperator": "equal",
+          "widgets": {
+              "time": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "between",
+                      "not_between",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "datetime": {
+          "defaultOperator": "equal",
+          "widgets": {
+              "datetime": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "between",
+                      "not_between",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "select": {
+          "mainWidget": "select",
+          "defaultOperator": "select_equals",
+          "widgets": {
+              "select": {
+                  "operators": [
+                      "select_equals",
+                      "select_not_equals",
+                      "is_null",
+                      "is_not_null"
+                  ],
+                  "widgetProps": {
+                      "customProps": {
+                          "showSearch": true
+                      }
+                  }
+              },
+              "multiselect": {
+                  "operators": [
+                      "select_any_in",
+                      "select_not_any_in",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "multiselect": {
+          "defaultOperator": "multiselect_equals",
+          "widgets": {
+              "multiselect": {
+                  "operators": [
+                      "multiselect_contains",
+                      "multiselect_not_contains",
+                      "multiselect_equals",
+                      "multiselect_not_equals",
+                      "is_null",
+                      "is_not_null"
+                  ]
+              }
+          }
+      },
+      "boolean": {
+          "defaultOperator": "equal",
+          "widgets": {
+              "boolean": {
+                  "operators": [
+                      "equal",
+                      "not_equal",
+                      "is_null",
+                      "is_not_null"
+                  ],
+                  "widgetProps": {}
+              },
+              "field": {
+                  "operators": [
+                      "equal",
+                      "not_equal"
+                  ]
+              }
+          }
+      },
+      "!group": {
+          "defaultOperator": "some",
+          "mainWidget": "number",
+          "widgets": {
+              "number": {
+                  "widgetProps": {
+                      "min": 0
+                  },
+                  "operators": [
+                      "some",
+                      "all",
+                      "none",
+                      "equal",
+                      "not_equal",
+                      "less",
+                      "less_or_equal",
+                      "greater",
+                      "greater_or_equal",
+                      "between",
+                      "not_between"
+                  ],
+                  "opProps": {
+                      "equal": {
+                          "label": "Count =="
+                      },
+                      "not_equal": {
+                          "label": "Count !="
+                      },
+                      "less": {
+                          "label": "Count <"
+                      },
+                      "less_or_equal": {
+                          "label": "Count <="
+                      },
+                      "greater": {
+                          "label": "Count >"
+                      },
+                      "greater_or_equal": {
+                          "label": "Count >="
+                      },
+                      "between": {
+                          "label": "Count between"
+                      },
+                      "not_between": {
+                          "label": "Count not between"
+                      }
+                  }
+              }
+          }
+      },
+      "case_value": {
+          "mainWidget": "case_value",
+          "widgets": {
+              "case_value": {}
+          }
+      },
+      "treeselect": {
+          "mainWidget": "treeselect",
+          "defaultOperator": "select_equals",
+          "widgets": {
+              "treeselect": {
+                  "operators": [
+                      "select_equals",
+                      "select_not_equals"
+                  ]
+              },
+              "treemultiselect": {
+                  "operators": [
+                      "select_any_in",
+                      "select_not_any_in"
+                  ]
+              }
+          }
+      },
+      "treemultiselect": {
+          "defaultOperator": "multiselect_equals",
+          "widgets": {
+              "treemultiselect": {
+                  "operators": [
+                      "multiselect_equals",
+                      "multiselect_not_equals"
+                  ]
+              }
+          }
+      }
+  },
+  "settings": {
+      "fieldSources": [
+          "field"
+      ],
+      "keepInputOnChangeFieldSrc": true,
+      "fieldItemKeysForSearch": [
+          "label",
+          "path",
+          "altLabel",
+          "grouplabel"
+      ],
+      "listKeysForSearch": [
+          "title",
+          "value"
+      ],
+      "valueSourcesInfo": {
+          "value": {
+              "label": "Value"
+          },
+          "field": {
+              "label": "Field",
+              "widget": "field"
+          },
+          "func": {
+              "label": "Function",
+              "widget": "func"
+          }
+      },
+      "fieldSeparator": ".",
+      "fieldSeparatorDisplay": ".",
+      "canReorder": true,
+      "canRegroup": true,
+      "canDeleteLocked": false,
+      "canLeaveEmptyGroup": true,
+      "shouldCreateEmptyGroup": false,
+      "canShortMongoQuery": true,
+      "removeEmptyGroupsOnLoad": true,
+      "removeIncompleteRulesOnLoad": true,
+      "removeInvalidMultiSelectValuesOnLoad": false,
+      "setOpOnChangeField": [
+          "keep",
+          "default"
+      ],
+      "groupOperators": [
+          "some",
+          "all",
+          "none"
+      ],
+      "defaultGroupConjunction": "AND",
+      "locale": {
+          "moment": "en"
+      },
+      "valueLabel": "Value",
+      "valuePlaceholder": "Value",
+      "fieldLabel": "Field",
+      "operatorLabel": "Operator",
+      "funcLabel": "Function",
+      "fieldPlaceholder": "Select field",
+      "funcPlaceholder": "Select function",
+      "operatorPlaceholder": "Select operator",
+      "lockLabel": "Lock",
+      "lockedLabel": "Locked",
+      "deleteLabel": "Delete",
+      "addGroupLabel": "Add group",
+      "addCaseLabel": "Add condition",
+      "addDefaultCaseLabel": "Add default condition",
+      "defaultCaseLabel": "Default:",
+      "addRuleLabel": "Add rule",
+      "addSubRuleLabel": "Add sub rule",
+      "delGroupLabel": "Delete",
+      "notLabel": "Not",
+      "fieldSourcesPopupTitle": "Select source",
+      "valueSourcesPopupTitle": "Select value source",
+      "removeRuleConfirmOptions": null,
+      "removeGroupConfirmOptions": null,
+      "convertableWidgets": {
+          "number": [
+              "slider",
+              "rangeslider"
+          ],
+          "slider": [
+              "number",
+              "rangeslider"
+          ],
+          "rangeslider": [
+              "number",
+              "slider"
+          ],
+          "text": [
+              "textarea"
+          ],
+          "textarea": [
+              "text"
+          ]
+      },
+      "jsonLogic": {
+          "groupVarKey": "var",
+          "altVarKey": "var",
+          "lockedOp": "locked"
+      },
+      "renderSwitchPrefix": "Conditions",
+      "customFieldSelectProps": {
+          "showSearch": true
+      },
+      "defaultSliderWidth": "200px",
+      "defaultSelectWidth": "200px",
+      "defaultSearchWidth": "100px",
+      "defaultMaxRows": 5,
+      "renderSize": "small",
+      "maxLabelsLength": 100,
+      "showLock": false,
+      "showNot": true,
+      "forceShowConj": false,
+      "groupActionsPosition": "topRight"
+  },
+  "ctx": {
+      "utils": {
+          "SqlString": {}
+      },
+      "W": {},
+      "O": {}
+  }
+}
